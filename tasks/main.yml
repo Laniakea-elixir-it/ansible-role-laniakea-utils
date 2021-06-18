@@ -10,5 +10,5 @@
   when: install_docker
 
 - name: Include miniconda role
-  import_task: install_conda.yml
+  import_tasks: install_conda.yml
   when: install_conda
