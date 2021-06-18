@@ -8,4 +8,10 @@
     docker_config:  { "data-root": "{{ export_dir }}/docker_image", }
   when: install_docker
 
-
+- name: Include miniconda role
+  include_role:
+    name: uchida.miniconda
+  vars:
+    miniconda_prefix: "{{ conda_prefix }}"
+    miniconda_version: "4.6.14"
+  when: install_conda
