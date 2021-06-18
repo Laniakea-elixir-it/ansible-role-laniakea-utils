@@ -11,6 +11,7 @@
 - name: Include miniconda role
   include_role:
     name: uchida.miniconda
+    public: true
   vars:
     miniconda_prefix: "{{ conda_prefix }}"
     miniconda_version: "{{ conda_version }}"
