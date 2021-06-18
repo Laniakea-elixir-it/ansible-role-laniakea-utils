@@ -1,2 +1,16 @@
 ---
 # defaults file for ansible-role-laniakea-utils
+
+install_docker: False
+
+install_conda: False
+
+install_dev_packages: False
+
+install_nginx: False
+
+install_nextflow: False
+
+install_knime: False
+
+install_cwl: False

@@ -1,2 +1,11 @@
 ---
 # tasks file for ansible-role-laniakea-utils
+
+- name: Include Docker role
+  include_role:
+    name: indigo-dc.docker
+    vars:
+      docker_config:  { "data-root": "{{ export_dir }}/docker_image", }
+  when: install_docker
+
+
