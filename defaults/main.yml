@@ -1,13 +1,13 @@
 ---
 # defaults file for ansible-role-laniakea-utils
 
-install_docker: False
 export_dir: '/export'
-docker_config:  { "data-root": "{{ export_dir }}/docker_image", }
+
+install_docker: False
 
 install_conda: False
-miniconda_prefix: '{{ export_dir }}/miniconda'
-miniconda_version: '4.6.14'
+conda_prefix: '{{ export_dir }}/miniconda'
+conda_version: '4.6.14'
 
 install_dev_packages: False
 

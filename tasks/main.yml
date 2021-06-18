@@ -5,9 +5,10 @@
   include_role:
     name: indigo-dc.docker
     public: true
+  vars:
+    docker_config:  { "data-root": "{{ export_dir }}/docker_image", }
   when: install_docker
 
 - name: Include miniconda role
-  include_role:
-    name: uchida.miniconda
+  import_task: install_conda.yml
   when: install_conda
