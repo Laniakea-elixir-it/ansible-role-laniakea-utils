@@ -5,8 +5,8 @@ install_docker: False
 export_dir: '/export'
 
 install_conda: False
-miniconda_prefix: '{{ export_dir }}'
-miniconda_version: '4.6.14'
+conda_prefix: '{{ export_dir }}'
+conda_version: '4.6.14'
 
 install_dev_packages: False
 

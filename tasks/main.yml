@@ -12,6 +12,6 @@
   include_role:
     name: uchida.miniconda
   vars:
-    miniconda_prefix: "{{ miniconda_prefix }}"
-    miniconda_version: "4.6.14"
+    miniconda_prefix: "{{ conda_prefix }}"
+    miniconda_version: "{{ conda_version }}"
   when: install_conda
