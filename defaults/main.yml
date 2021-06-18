@@ -3,10 +3,11 @@
 
 install_docker: False
 export_dir: '/export'
+docker_config:  { "data-root": "{{ export_dir }}/docker_image", }
 
 install_conda: False
-conda_prefix: '{{ export_dir }}'
-conda_version: '4.6.14'
+miniconda_prefix: '{{ export_dir }}/miniconda'
+miniconda_version: '4.6.14'
 
 install_dev_packages: False
 

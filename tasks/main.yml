@@ -4,15 +4,10 @@
 - name: Include Docker role
   include_role:
     name: indigo-dc.docker
-  vars:
-    docker_config:  { "data-root": "{{ export_dir }}/docker_image", }
+    public: true
   when: install_docker
 
 - name: Include miniconda role
   include_role:
     name: uchida.miniconda
-    public: true
-  vars:
-    miniconda_prefix: "{{ conda_prefix }}"
-    miniconda_version: "{{ conda_version }}"
   when: install_conda
