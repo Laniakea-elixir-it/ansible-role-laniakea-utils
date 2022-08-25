@@ -1,0 +1,16 @@
+# Copy this file to /etc/systemd/system/luksctl-api.service
+# and adjust it following your configuration path
+
+[Unit]
+Description=Gunicorn instance to serve luksctl api server
+After=network.target
+
+[Service]
+User=galaxy
+Group=galaxy
+WorkingDirectory=/opt/laniakea-utils/lib/python3.6/site-packages/laniakea_utils/api
+Environment="PATH=/opt/laniakea-utils/bin"
+ExecStart=/opt/laniakea-utils//bin/gunicorn --workers 2 --bind 0.0.0.0:5001 --timeout 300 app:app
+
+[Install]
+WantedBy=multi-user.target

@@ -1,2 +1,72 @@
 ---
 # tasks file for ansible-role-laniakea-utils
+
+- name: Create laniakea user
+  user:
+    name: 'laniakea'
+    shell: '/bin/bash'
+    create_home: no
+
+- name: Enable laniakea user to run laniakea-utils
+  lineinfile:
+    dest: '/etc/sudoers'
+    line: 'laniakea ALL=NOPASSWD:/bin/systemctl restart nginx,/bin/systemctl restart galaxy'
+    state: present
+    insertafter: EOF
+
+- name: '[EL] Install prerequisites'
+  yum:
+    name:
+      - python3
+      - python3-pip
+      - python3-virtualenv
+    state: present
+  when: ansible_os_family == 'RedHat'
+
+- name: '[Ubuntu] Install prerequisites'
+  apt:
+    name:
+      - python3
+      - python3-pip
+      - python3-virtualenv
+    state: present
+  when: ansible_os_family == 'Debian'
+
+- name: Verify if laniakea-utils is installed
+  stat:
+    path: '{{ venv }}'
+  register: is_installed
+
+- block:
+
+  - name: Create venv
+    pip:
+      name: pip
+      virtualenv: '{{ venv }}'
+      virtualenv_command: python3 -m virtualenv
+  
+  - name: Install laniakea-utils
+    pip:
+      name: 'laniakea-utils'
+      version: '{{ version }}'
+      virtualenv: '{{ venv }}'
+    become_user: root
+    become_method: sudo
+
+  when: is_installed.stat.exists
+
+- name: Configure Laniakea-utils
+  template:
+    src: laniakea-utils.ini.j2
+    dest: /etc/laniakea/laniakea-utils.ini
+
+- name: Install systemd unit file
+  template:
+    src: laniakea-utils.service.j2
+    dest: /etc/systemd/system/laniakea-utils.service
+
+- name: Start and enable laniakea-utils
+  service:
+    name: laniakea-utils
+    state: started
+    enabled: yes

@@ -1,2 +1,9 @@
 ---
 # defaults file for ansible-role-laniakea-utils
+
+version: 0.0.1
+
+venv: /op/laniakea-utils
+
+systed_user: laniakea
+systemd_group: laniakea
