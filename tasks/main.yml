@@ -15,27 +15,23 @@
     insertafter: EOF
 
 - name: '[EL] Install prerequisites'
-  yum:
+  package:
     name:
       - python3
       - python3-pip
       - python3-virtualenv
     state: present
-  when: ansible_os_family == 'RedHat'
 
-- name: '[Ubuntu] Install prerequisites'
-  apt:
-    name:
-      - python3
-      - python3-pip
-      - python3-virtualenv
-    state: present
-  when: ansible_os_family == 'Debian'
+- debug:
+    msg: '{{ venv }}'
 
 - name: Verify if laniakea-utils is installed
   stat:
     path: '{{ venv }}'
   register: is_installed
+
+- debug:
+    msg: '{{ is_installed.stat }}'
 
 - block:
 
@@ -44,7 +40,7 @@
       name: pip
       virtualenv: '{{ venv }}'
       virtualenv_command: python3 -m virtualenv
-  
+
   - name: Install laniakea-utils
     pip:
       name: 'laniakea-utils'
@@ -53,7 +49,12 @@
     become_user: root
     become_method: sudo
 
-  when: is_installed.stat.exists
+  when: not is_installed.stat.exists
+
+- name: Create laniakea-utils config dir
+  file:
+    path: /etc/laniakea
+    state: directory
 
 - name: Configure Laniakea-utils
   template:
