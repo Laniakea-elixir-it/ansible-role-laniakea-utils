@@ -1,14 +1,2 @@
 ---
 # tasks file for ansible-role-laniakea-utils
-
-- name: Include Docker role
-  include_role:
-    name: indigo-dc.docker
-    public: true
-  vars:
-    docker_config:  { "data-root": "{{ export_dir }}/docker_image", }
-  when: install_docker
-
-- name: Include miniconda role
-  import_tasks: install_conda.yml
-  when: install_conda

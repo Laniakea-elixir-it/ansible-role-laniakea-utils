@@ -2,7 +2,7 @@ galaxy_info:
   author: Marco Tangaro
   description: Install Useful packages.
   company: IBIOM-CNR
-  role_name: utils
+  role_name: laniakea_utils
   min_ansible_version: 2.9
   license: GPLv3
   platforms:
