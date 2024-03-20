@@ -10,7 +10,7 @@
 - name: Enable laniakea user to run laniakea-utils
   lineinfile:
     dest: '/etc/sudoers'
-    line: 'laniakea ALL=NOPASSWD:/bin/systemctl restart nginx,/bin/systemctl restart galaxy'
+    line: 'laniakea ALL=NOPASSWD:{{ nginx_restart_command }},{{ galaxy_restart_command }}'
     state: present
     insertafter: EOF
 
@@ -69,5 +69,5 @@
 - name: Start and enable laniakea-utils
   service:
     name: laniakea-utils
-    state: started
+    state: restarted
     enabled: yes
