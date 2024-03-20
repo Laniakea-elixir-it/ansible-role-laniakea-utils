@@ -1,13 +1,14 @@
 [oidc]
-trusted_OP_list = [ 'https://iam.recas.ba.infn.it/', 'https://cloud-90-147-75-207.cloud.ba.infn.it/' ]
-trusted_sub = <oidc_user_sub>
+trusted_OP_list = {{ trusted_OP_list }}
+trusted_sub = {{ trusted_sub }}
 
 [commons]
 log_to = /tmp/laniakea-utils-api.log
 log_level = DEBUG
 
 [galaxy]
-galaxy_restart_command = '/bin/sudo systemctl restart galaxy'
-nginx_restart_command = '/bin/sudo systemctl restart nginx'
+galaxy_restart_command = '{{ sudo_path }} {{ galaxy_restart_command }}'
+gunicorn_bind_address = '{{ gunicorn_bind_address }}'
+nginx_restart_command = '{{ sudo_path }} {{ nginx_restart_command }}'
 
 [rstudio]
