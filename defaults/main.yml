@@ -7,3 +7,7 @@ venv: /opt/laniakea-utils
 
 systemd_user: laniakea
 systemd_group: laniakea
+
+# oidc configuration param
+trusted_OP_list: [ 'https://iam.recas.ba.infn.it/' ]
+trusted_sub: <oidc_user_sub>
