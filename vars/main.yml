@@ -1,2 +1,10 @@
 ---
 # vars file for ansible-role-laniakea-utils
+
+# commons
+sudo_path: '/usr/bin/sudo'
+
+# Galaxyctl section
+galaxy_restart_command: '/usr/local/bin/galaxyctl restart'
+gunicorn_bind_address: '127.0.0.1:4001'
+nginx_restart_command: '/usr/bin/systemctl restart nginx'
