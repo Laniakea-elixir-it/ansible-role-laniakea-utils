@@ -1,7 +1,7 @@
 ---
 # defaults file for ansible-role-laniakea-utils
 
-version: 0.2.0b2
+version: 0.2.0b3
 
 venv: /opt/laniakea-utils
 
@@ -9,5 +9,6 @@ systemd_user: laniakea
 systemd_group: laniakea
 
 # oidc configuration param
-trusted_OP_list: [ 'https://iam.recas.ba.infn.it/' ]
+# The trusted OP list should be a comma separated list, with no white spaces.
+trusted_OP_list: 'https://iam.recas.ba.infn.it/,https://iam.cloud.infn.it/'
 trusted_sub: <oidc_user_sub>
