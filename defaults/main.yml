@@ -1,7 +1,7 @@
 ---
 # defaults file for ansible-role-laniakea-utils
 
-version: 0.2.0b3
+version: 0.3.0b1
 
 venv: /opt/laniakea-utils
 

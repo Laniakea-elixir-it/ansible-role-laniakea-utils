@@ -8,9 +8,9 @@ After=network.target
 [Service]
 User={{ systemd_user }}
 Group={{ systemd_group }}
-WorkingDirectory={{ venv }}/lib/python3.9/site-packages/laniakea_utils/api
+WorkingDirectory={{ venv }}/lib/python3.9/site-packages/laniakea_utils
 Environment="PATH={{ venv }}/bin"
-ExecStart={{ venv }}/bin/gunicorn --workers 2 --bind 0.0.0.0:5001 --timeout 300 app:app
+ExecStart={{ venv }}/bin/gunicorn --workers 2 --bind 0.0.0.0:5001 --timeout 300 api:app
 
 [Install]
 WantedBy=multi-user.target
